@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 
-type ButtonVariant = "primary" | "secondary" | "ghost";
+type ButtonVariant = "outline" | "solid" | "ghost" | "primary" | "secondary";
 
 interface ButtonProps {
   children: React.ReactNode;
@@ -15,24 +15,28 @@ interface ButtonProps {
 }
 
 const variants: Record<ButtonVariant, string> = {
-  primary:
-    "bg-gold text-black hover:bg-gold-light shadow-[0_0_30px_rgba(198,167,105,0.15)] hover:shadow-[0_0_40px_rgba(198,167,105,0.25)]",
-  secondary:
-    "bg-white/[0.04] text-off-white hover:bg-white/[0.08] hover:text-gold",
+  outline:
+    "border border-gold/60 text-gold hover:bg-gold hover:text-black",
+  solid:
+    "bg-gold text-black hover:bg-gold-light",
   ghost:
     "text-gold hover:text-gold-light",
+  primary:
+    "bg-gold text-black hover:bg-gold-light",
+  secondary:
+    "border border-white/10 text-off-white hover:border-gold/30 hover:text-gold",
 };
 
 export default function Button({
   children,
-  variant = "primary",
+  variant = "outline",
   href,
   className,
   onClick,
   type = "button",
 }: ButtonProps) {
   const base =
-    "inline-flex items-center justify-center text-[11px] tracking-[0.2em] uppercase px-8 py-3.5 transition-all duration-500 font-medium";
+    "inline-flex items-center justify-center text-[11px] tracking-[0.15em] uppercase px-8 py-3 transition-all duration-300 font-medium";
 
   if (href) {
     return (
