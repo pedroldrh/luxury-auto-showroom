@@ -1,0 +1,92 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-black: #060606;
+  --color-charcoal: #111111;
+  --color-dark: #0C0C0C;
+  --color-off-white: #EDECE8;
+  --color-cream: #D4D0C8;
+  --color-gold: #B8956A;
+  --color-gold-light: #CAAB82;
+  --color-gold-dim: rgba(184, 149, 106, 0.06);
+  --color-emerald: #0F2A24;
+  --color-muted: #4A4A4A;
+  --color-background: #060606;
+  --color-foreground: #EDECE8;
+  --font-heading: var(--font-playfair);
+  --font-body: var(--font-cormorant);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  cursor: default;
+}
+
+body {
+  background: var(--color-black);
+  color: var(--color-off-white);
+  font-family: var(--font-body), Georgia, serif;
+  font-size: 1.0625rem;
+  line-height: 1.8;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* Scrollbar — barely visible */
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(184, 149, 106, 0.2); }
+
+::selection {
+  background: var(--color-gold);
+  color: var(--color-black);
+}
+
+/* Grain overlay — applied to sections for texture */
+.grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Text reveal animation */
+@keyframes reveal-up {
+  from { transform: translateY(100%); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.reveal-up {
+  animation: reveal-up 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-delay: var(--delay, 0s);
+  opacity: 0;
+}
+
+/* Horizontal rule — gold gradient */
+.hr-gold {
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, var(--color-gold) 50%, transparent 100%);
+  opacity: 0.2;
+  border: none;
+}
+
+/* Editorial large number */
+.editorial-number {
+  font-family: var(--font-heading);
+  font-size: clamp(6rem, 12vw, 14rem);
+  line-height: 0.85;
+  color: rgba(255,255,255,0.02);
+  font-weight: 400;
+  font-style: italic;
+  user-select: none;
+}
